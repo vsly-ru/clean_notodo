@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>233253383388-3nk564r7kgsq1275fcv14adjj34s74nv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.233253383388-3nk564r7kgsq1275fcv14adjj34s74nv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBy_mrq1DdZLOxfO7M2xZhunrpVcwGj51s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>233253383388</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.vsly.notodo</string>
+	<key>PROJECT_ID</key>
+	<string>notodo-0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>notodo-0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:233253383388:ios:b187bf634f89d92e0f9819</string>
+</dict>
+</plist>

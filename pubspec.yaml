@@ -1,0 +1,51 @@
+name: notodo
+description: Yet another TODO app.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+  # Service locator package
+  get_it: ^7.2.0
+  # BLoC state management
+  flutter_bloc: ^8.0.1
+  # annotations for "freezed"
+  freezed_annotation: ^1.1.0
+  # web requests
+  dio: ^4.0.6
+  # router
+  go_router: ^3.0.7
+  # di
+  injectable: ^1.5.3
+  # functional programming features
+  dartz: any
+  # streams
+  rxdart: any
+  # advanced classes
+  equatable: any
+  # some magic
+  flutter_hooks: any
+  # tests mockups
+  mockito: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # data-classes & pattern matching thru code generation
+  freezed: ^1.1.1
+  # code generation
+  build_runner: ^2.1.8
+  flutter_lints: ^1.0.0
+  injectable_generator: ^1.5.3
+
+flutter:
+  uses-material-design: true
