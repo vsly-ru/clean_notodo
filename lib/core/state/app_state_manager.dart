@@ -1,12 +1,15 @@
-/// app state manager concrete implementation
+/// app state manager
 /// - get state & notifier
-/// - state setters implementation
+/// - setters
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
+import 'package:notodo/features/auth/domain/entities/user.dart';
 
 import 'app_state.dart';
 
+@singleton
 class AppStateManager extends ValueNotifier<AppStateInfo> {
   AppStateManager() : super(const AppStateInfo()) {
     addListener(() {
@@ -16,8 +19,8 @@ class AppStateManager extends ValueNotifier<AppStateInfo> {
 
   AppStateInfo get state => value;
 
-  void setInitialized(bool initialized) {
-    value = value.copyWith(initialized: initialized);
+  void setUser(User? user) {
+    value = value.copyWith(user: user);
   }
 
   void setAuthenticated(bool authenticated) {

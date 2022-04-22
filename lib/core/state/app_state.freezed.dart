@@ -18,10 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AppStateInfoTearOff {
   const _$AppStateInfoTearOff();
 
-  _AppStateInfo call({bool? initialized, bool? authenticated, String? pageId}) {
+  _AppStateInfo call({bool? authenticated, User? user, String? pageId}) {
     return _AppStateInfo(
-      initialized: initialized,
       authenticated: authenticated,
+      user: user,
       pageId: pageId,
     );
   }
@@ -32,8 +32,8 @@ const $AppStateInfo = _$AppStateInfoTearOff();
 
 /// @nodoc
 mixin _$AppStateInfo {
-  bool? get initialized => throw _privateConstructorUsedError;
   bool? get authenticated => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
   String? get pageId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -46,7 +46,9 @@ abstract class $AppStateInfoCopyWith<$Res> {
   factory $AppStateInfoCopyWith(
           AppStateInfo value, $Res Function(AppStateInfo) then) =
       _$AppStateInfoCopyWithImpl<$Res>;
-  $Res call({bool? initialized, bool? authenticated, String? pageId});
+  $Res call({bool? authenticated, User? user, String? pageId});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -59,24 +61,35 @@ class _$AppStateInfoCopyWithImpl<$Res> implements $AppStateInfoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? initialized = freezed,
     Object? authenticated = freezed,
+    Object? user = freezed,
     Object? pageId = freezed,
   }) {
     return _then(_value.copyWith(
-      initialized: initialized == freezed
-          ? _value.initialized
-          : initialized // ignore: cast_nullable_to_non_nullable
-              as bool?,
       authenticated: authenticated == freezed
           ? _value.authenticated
           : authenticated // ignore: cast_nullable_to_non_nullable
               as bool?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       pageId: pageId == freezed
           ? _value.pageId
           : pageId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -87,7 +100,10 @@ abstract class _$AppStateInfoCopyWith<$Res>
           _AppStateInfo value, $Res Function(_AppStateInfo) then) =
       __$AppStateInfoCopyWithImpl<$Res>;
   @override
-  $Res call({bool? initialized, bool? authenticated, String? pageId});
+  $Res call({bool? authenticated, User? user, String? pageId});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -102,19 +118,19 @@ class __$AppStateInfoCopyWithImpl<$Res> extends _$AppStateInfoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? initialized = freezed,
     Object? authenticated = freezed,
+    Object? user = freezed,
     Object? pageId = freezed,
   }) {
     return _then(_AppStateInfo(
-      initialized: initialized == freezed
-          ? _value.initialized
-          : initialized // ignore: cast_nullable_to_non_nullable
-              as bool?,
       authenticated: authenticated == freezed
           ? _value.authenticated
           : authenticated // ignore: cast_nullable_to_non_nullable
               as bool?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       pageId: pageId == freezed
           ? _value.pageId
           : pageId // ignore: cast_nullable_to_non_nullable
@@ -126,18 +142,18 @@ class __$AppStateInfoCopyWithImpl<$Res> extends _$AppStateInfoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppStateInfo implements _AppStateInfo {
-  const _$_AppStateInfo({this.initialized, this.authenticated, this.pageId});
+  const _$_AppStateInfo({this.authenticated, this.user, this.pageId});
 
   @override
-  final bool? initialized;
-  @override
   final bool? authenticated;
+  @override
+  final User? user;
   @override
   final String? pageId;
 
   @override
   String toString() {
-    return 'AppStateInfo(initialized: $initialized, authenticated: $authenticated, pageId: $pageId)';
+    return 'AppStateInfo(authenticated: $authenticated, user: $user, pageId: $pageId)';
   }
 
   @override
@@ -146,17 +162,16 @@ class _$_AppStateInfo implements _AppStateInfo {
         (other.runtimeType == runtimeType &&
             other is _AppStateInfo &&
             const DeepCollectionEquality()
-                .equals(other.initialized, initialized) &&
-            const DeepCollectionEquality()
                 .equals(other.authenticated, authenticated) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality().equals(other.pageId, pageId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(initialized),
       const DeepCollectionEquality().hash(authenticated),
+      const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(pageId));
 
   @JsonKey(ignore: true)
@@ -167,14 +182,12 @@ class _$_AppStateInfo implements _AppStateInfo {
 
 abstract class _AppStateInfo implements AppStateInfo {
   const factory _AppStateInfo(
-      {bool? initialized,
-      bool? authenticated,
-      String? pageId}) = _$_AppStateInfo;
+      {bool? authenticated, User? user, String? pageId}) = _$_AppStateInfo;
 
   @override
-  bool? get initialized;
-  @override
   bool? get authenticated;
+  @override
+  User? get user;
   @override
   String? get pageId;
   @override

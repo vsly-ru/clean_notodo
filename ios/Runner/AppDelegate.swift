@@ -75,7 +75,7 @@ import FirebaseAuth
                 return
             }
             if call.method == "test" {
-                self.reply(result:result, isSuccess: true, data: "test")
+                self.reply(result:result, isSuccess: true, message: "", data: "test")
                 return
             }
             // if nothing matched the method name

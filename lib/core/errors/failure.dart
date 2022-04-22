@@ -1,7 +1,7 @@
 // a failure base representation
 // could be extended with a source, data, arguments, stackTrace, etc.
 
-abstract class Failure {
+class Failure {
   // any meaningful message
   final String message;
   // unique in-app failure code (not external error codes like 404)
