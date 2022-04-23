@@ -2,10 +2,10 @@
 
 abstract class PageRoutes {
   // pages
-  static const String home = '/';
-  static const String signin = '/signin';
-  static const String signup = '/signup';
-  static const String todoList = '/todo_list';
-  // path items
-  static const String todo = 'todo';
+  static const String home = '/'; // default location
+  static const String signin = '/signin'; // sign in & sign up page
+  static const String todoList = '/todo_list'; // home of todo lists
+  static const String todoAdd =
+      '/todo_add'; // todo item adding page (not implemented)
+  static const String todo = '/todo'; // one todo item page
 }

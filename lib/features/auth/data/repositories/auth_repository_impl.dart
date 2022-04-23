@@ -9,22 +9,22 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<AuthRepositoryResult> loginWithEmail(String email, String password) {
     //
-    return Future.value(
-        const Left(Failure('not_implemented', 'not_implemented')));
+    return Future.value(const Left(
+        Failure(message: 'Method not implemented.', code: 'not_implemented')));
   }
 
   @override
   Future<AuthRepositoryResult> registerWithEmail(
       String email, String password) {
     //
-    return Future.value(
-        const Left(Failure('not_implemented', 'not_implemented')));
+    return Future.value(const Left(
+        Failure(message: 'Method not implemented.', code: 'not_implemented')));
   }
 
   @override
   Future<AuthRepositoryResult> logout() {
     //
-    return Future.value(
-        const Left(Failure('not_implemented', 'not_implemented')));
+    return Future.value(const Left(
+        Failure(message: 'Method not implemented.', code: 'not_implemented')));
   }
 }

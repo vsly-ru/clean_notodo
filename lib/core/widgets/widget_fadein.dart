@@ -29,6 +29,8 @@ class FadeIn extends StatefulWidget {
   /// Initial widget opacity (from 0.0 to 1.0)
   final double opacity;
 
+  final double scale;
+
   const FadeIn(
       {Key? key,
       this.child,
@@ -36,6 +38,7 @@ class FadeIn extends StatefulWidget {
       this.delay = 0,
       this.duration = 400,
       this.skipAnimation = false,
+      this.scale = 0.25,
       this.opacity = 0.0})
       : super(key: key);
 
@@ -48,6 +51,7 @@ class FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
   late Animation _dxAnimation;
   late Animation _dyAnimation;
   late Animation _opacityAnimation;
+  late Animation _scaleAnimation;
 
   // determine when the child shouldn't be mounted
   bool _erased = false;
@@ -63,6 +67,7 @@ class FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
         Tween(begin: widget.offset.dy, end: 0.0).animate(_controller);
     _opacityAnimation =
         Tween(begin: widget.opacity, end: 1.0).animate(_controller);
+    _scaleAnimation = Tween(begin: widget.scale, end: 1.0).animate(_controller);
     if (widget.delay > 0) {
       // delaying the animation
       Future.delayed(Duration(milliseconds: widget.delay), () {
@@ -77,7 +82,7 @@ class FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
   @override
   void didUpdateWidget(FadeIn oldWidget) {
     super.didUpdateWidget(oldWidget);
-    log('didUpdateWidget', name: 'FadeIn');
+    // log('didUpdateWidget', name: 'FadeIn');
     if (widget.duration != oldWidget.duration) {
       _controller.duration = Duration(milliseconds: widget.duration);
       // TODO: update other fields
@@ -145,9 +150,10 @@ class FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
       builder: (context, child) => Opacity(
         opacity: _opacityAnimation.value,
         child: Transform(
+          alignment: FractionalOffset.center,
           transform: Matrix4.identity()
-            ..translate(_dxAnimation.value, _dyAnimation.value),
-          // ..scale(_scaleAnimation.value)
+            ..translate(_dxAnimation.value, _dyAnimation.value)
+            ..scale(_scaleAnimation.value),
           child: widget.child,
         ),
       ),

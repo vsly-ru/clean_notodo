@@ -10,13 +10,13 @@ import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
 class TodoRepository implements ITodoRepository {
   @override
   Future<Either<Failure, ToDo>> getOne(String id) {
-    return Future.value(
-        const Left(Failure('not_implemented', 'not_implemented')));
+    return Future.value(const Left(
+        Failure(message: 'Method not implemented.', code: 'not_implemented')));
   }
 
   @override
   Future<Either<Failure, List<ToDo>>> getList(TodoStatus? filter) {
-    return Future.value(
-        const Left(Failure('not_implemented', 'not_implemented')));
+    return Future.value(const Left(
+        Failure(message: 'Method not implemented.', code: 'not_implemented')));
   }
 }

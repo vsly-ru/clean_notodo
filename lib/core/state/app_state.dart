@@ -6,5 +6,8 @@ part 'app_state.freezed.dart';
 @freezed
 class AppStateInfo with _$AppStateInfo {
   const factory AppStateInfo(
-      {bool? authenticated, User? user, String? pageId}) = _AppStateInfo;
+      {bool? authenticated,
+      bool? offlineMode,
+      User? user,
+      String? pageId}) = _AppStateInfo;
 }

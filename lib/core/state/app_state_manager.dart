@@ -27,6 +27,10 @@ class AppStateManager extends ValueNotifier<AppStateInfo> {
     value = value.copyWith(authenticated: authenticated);
   }
 
+  void setOfflineMode(bool offlineMode) {
+    value = value.copyWith(offlineMode: offlineMode);
+  }
+
   void setPage(String pageId) {
     value = value.copyWith(pageId: pageId);
   }

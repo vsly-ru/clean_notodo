@@ -20,12 +20,12 @@ class TodoListCubit extends Cubit<TodoListState> {
   void onChange(Change<TodoListState> change) {
     super.onChange(change);
 
-    log('state changed: $change');
+    log('state changed: $change', name: 'TodoListCubit');
   }
 
   Future<void> loadAll() async {
     try {
-      // emit(const TodoListState.loading());
+      emit(const TodoListState(isLoading: true));
       final result = await _repository.getList(null);
       result.fold(
           (l) => _failed(l), (r) => emit(TodoListState(items: _mapList(r))));
@@ -41,7 +41,7 @@ class TodoListCubit extends Cubit<TodoListState> {
   // _
 
   void _failed(Failure failure) {
-    emit(TodoListState(errMessage: '[${failure.code}] error.message'));
+    emit(TodoListState(errMessage: '[${failure.code}] ${failure.message}'));
   }
 
   Map<TodoStatus, List<ToDo>> _mapList(List<ToDo> list) {

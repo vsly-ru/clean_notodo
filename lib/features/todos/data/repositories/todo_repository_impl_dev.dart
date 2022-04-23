@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:notodo/core/constants.dart';
@@ -16,7 +18,14 @@ class DevTodoRepository implements ITodoRepository {
 
   @override
   Future<Either<Failure, List<ToDo>>> getList(TodoStatus? filter) async {
-    await Future.delayed(const Duration(milliseconds: 1200));
+    final random = Random();
+    await Future.delayed(
+        Duration(milliseconds: (random.nextDouble() * 3000).ceil()));
+    if (random.nextDouble() > 0.88) {
+      return const Left(Failure(
+          message: 'Dev data failed to load. \nFor test reasons.',
+          code: 'dev_fail'));
+    }
     return Right([_getDummyTodo(1), _getDummyTodo(2), _getDummyTodo(3)]);
   }
 }

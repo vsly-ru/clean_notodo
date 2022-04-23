@@ -36,6 +36,7 @@ dependencies:
   flutter_hooks: any
   # tests mockups
   mockito: ^5.1.0
+  line_icons: ^2.0.1
 
 dev_dependencies:
   flutter_test:

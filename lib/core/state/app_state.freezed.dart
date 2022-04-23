@@ -18,9 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AppStateInfoTearOff {
   const _$AppStateInfoTearOff();
 
-  _AppStateInfo call({bool? authenticated, User? user, String? pageId}) {
+  _AppStateInfo call(
+      {bool? authenticated, bool? offlineMode, User? user, String? pageId}) {
     return _AppStateInfo(
       authenticated: authenticated,
+      offlineMode: offlineMode,
       user: user,
       pageId: pageId,
     );
@@ -33,6 +35,7 @@ const $AppStateInfo = _$AppStateInfoTearOff();
 /// @nodoc
 mixin _$AppStateInfo {
   bool? get authenticated => throw _privateConstructorUsedError;
+  bool? get offlineMode => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
   String? get pageId => throw _privateConstructorUsedError;
 
@@ -46,7 +49,8 @@ abstract class $AppStateInfoCopyWith<$Res> {
   factory $AppStateInfoCopyWith(
           AppStateInfo value, $Res Function(AppStateInfo) then) =
       _$AppStateInfoCopyWithImpl<$Res>;
-  $Res call({bool? authenticated, User? user, String? pageId});
+  $Res call(
+      {bool? authenticated, bool? offlineMode, User? user, String? pageId});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -62,6 +66,7 @@ class _$AppStateInfoCopyWithImpl<$Res> implements $AppStateInfoCopyWith<$Res> {
   @override
   $Res call({
     Object? authenticated = freezed,
+    Object? offlineMode = freezed,
     Object? user = freezed,
     Object? pageId = freezed,
   }) {
@@ -69,6 +74,10 @@ class _$AppStateInfoCopyWithImpl<$Res> implements $AppStateInfoCopyWith<$Res> {
       authenticated: authenticated == freezed
           ? _value.authenticated
           : authenticated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      offlineMode: offlineMode == freezed
+          ? _value.offlineMode
+          : offlineMode // ignore: cast_nullable_to_non_nullable
               as bool?,
       user: user == freezed
           ? _value.user
@@ -100,7 +109,8 @@ abstract class _$AppStateInfoCopyWith<$Res>
           _AppStateInfo value, $Res Function(_AppStateInfo) then) =
       __$AppStateInfoCopyWithImpl<$Res>;
   @override
-  $Res call({bool? authenticated, User? user, String? pageId});
+  $Res call(
+      {bool? authenticated, bool? offlineMode, User? user, String? pageId});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -119,6 +129,7 @@ class __$AppStateInfoCopyWithImpl<$Res> extends _$AppStateInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? authenticated = freezed,
+    Object? offlineMode = freezed,
     Object? user = freezed,
     Object? pageId = freezed,
   }) {
@@ -126,6 +137,10 @@ class __$AppStateInfoCopyWithImpl<$Res> extends _$AppStateInfoCopyWithImpl<$Res>
       authenticated: authenticated == freezed
           ? _value.authenticated
           : authenticated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      offlineMode: offlineMode == freezed
+          ? _value.offlineMode
+          : offlineMode // ignore: cast_nullable_to_non_nullable
               as bool?,
       user: user == freezed
           ? _value.user
@@ -142,10 +157,13 @@ class __$AppStateInfoCopyWithImpl<$Res> extends _$AppStateInfoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppStateInfo implements _AppStateInfo {
-  const _$_AppStateInfo({this.authenticated, this.user, this.pageId});
+  const _$_AppStateInfo(
+      {this.authenticated, this.offlineMode, this.user, this.pageId});
 
   @override
   final bool? authenticated;
+  @override
+  final bool? offlineMode;
   @override
   final User? user;
   @override
@@ -153,7 +171,7 @@ class _$_AppStateInfo implements _AppStateInfo {
 
   @override
   String toString() {
-    return 'AppStateInfo(authenticated: $authenticated, user: $user, pageId: $pageId)';
+    return 'AppStateInfo(authenticated: $authenticated, offlineMode: $offlineMode, user: $user, pageId: $pageId)';
   }
 
   @override
@@ -163,6 +181,8 @@ class _$_AppStateInfo implements _AppStateInfo {
             other is _AppStateInfo &&
             const DeepCollectionEquality()
                 .equals(other.authenticated, authenticated) &&
+            const DeepCollectionEquality()
+                .equals(other.offlineMode, offlineMode) &&
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality().equals(other.pageId, pageId));
   }
@@ -171,6 +191,7 @@ class _$_AppStateInfo implements _AppStateInfo {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(authenticated),
+      const DeepCollectionEquality().hash(offlineMode),
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(pageId));
 
@@ -182,10 +203,15 @@ class _$_AppStateInfo implements _AppStateInfo {
 
 abstract class _AppStateInfo implements AppStateInfo {
   const factory _AppStateInfo(
-      {bool? authenticated, User? user, String? pageId}) = _$_AppStateInfo;
+      {bool? authenticated,
+      bool? offlineMode,
+      User? user,
+      String? pageId}) = _$_AppStateInfo;
 
   @override
   bool? get authenticated;
+  @override
+  bool? get offlineMode;
   @override
   User? get user;
   @override

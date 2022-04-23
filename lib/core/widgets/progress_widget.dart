@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-const _compatSize = 25.0;
-const _normalSize = 45.0;
+const _compatSize = 33.0;
+const _normalSize = 65.0;
 
 const _compatStrokeWidth = 1.5;
-const _normalStrokeWidth = 3.0;
+const _normalStrokeWidth = 2.5;
 
 class ProgressWidget extends StatelessWidget {
   const ProgressWidget(

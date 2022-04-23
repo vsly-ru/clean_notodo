@@ -8,5 +8,5 @@ class Failure {
   // to quickly locate a specific place in the source code
   final String code;
 
-  const Failure(this.message, this.code);
+  const Failure({required this.message, required this.code});
 }
