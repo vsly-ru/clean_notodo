@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
+import 'package:notodo/di.dart';
+import 'package:notodo/features/auth/presentation/pages/signin_page.dart';
+import 'package:notodo/features/todos/presentation/pages/page_list_page.dart';
 import '../state/app_state_manager.dart';
 
 import 'page_routes.dart';
@@ -21,7 +24,7 @@ class AppRouter extends GoRouter {
               _appStateManager
             ]),
             redirect: (routerState) {
-              if (routerState.subloc == PageRoutes.login &&
+              if (routerState.subloc == PageRoutes.signin &&
                   _appStateManager.state.authenticated == true) {
                 //  if login was a success, redirecting to a page we came [from]
                 final from = routerState.queryParams['from'];
@@ -32,11 +35,27 @@ class AppRouter extends GoRouter {
             },
             routes: [
               GoRoute(
-                  path: '/',
+                  path: PageRoutes.home,
                   redirect: ((state) =>
                       _appStateManager.state.authenticated == true
-                          ? _initialRoute
-                          : PageRoutes.login))
+                          ? PageRoutes.todoList
+                          : PageRoutes.signin)),
+              GoRoute(
+                  path: PageRoutes.signin,
+                  pageBuilder: (context, state) {
+                    return MaterialPage(
+                      key: state.pageKey,
+                      child: SigninPage(),
+                    );
+                  }),
+              GoRoute(
+                  path: PageRoutes.todoList,
+                  pageBuilder: (context, state) {
+                    return MaterialPage(
+                      key: state.pageKey,
+                      child: PageTodoList(getIt()),
+                    );
+                  }),
             ]) {
     _subscribeDeligatedEvents();
   }

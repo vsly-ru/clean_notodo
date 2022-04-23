@@ -9,7 +9,7 @@ import 'core/theme/dark.dart';
 import 'core/theme/light.dart';
 import 'core/widgets/widget_fadein.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
