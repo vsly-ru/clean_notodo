@@ -1,54 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:notodo/core/enums.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:notodo/core/widgets/tap_container.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:notodo/features/todos/presentation/cubit/todo_list_cubit.dart';
+import 'package:notodo/features/todos/presentation/widgets/todo_widget.dart';
 
-const _sectionRadius = 8.0;
+const _titleTextStatus = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300);
 
 class TodoSectionWidget extends HookWidget {
   final TodoListCubit cubit;
-  final double outerHeight;
   final String title;
+  final bool showAddButton;
   final List<ToDo> list;
 
   const TodoSectionWidget(this.cubit,
       {required this.title,
       required this.list,
-      required this.outerHeight,
+      this.showAddButton = false,
       Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      height: outerHeight,
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            // border: Border.all(width: 0.75, color: Colors.grey.withOpacity(0.5)),
-            // borderRadius: BorderRadius.circular(_sectionRadius),
-            // color: theme.cardColor,
+    return Column(
+      children: [
+        if (title.isNotEmpty || showAddButton)
+          Container(
+            height: 35,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (title.isNotEmpty)
+                  Container(
+                    width: 160,
+                    height: 28.0,
+                    // color: theme.primaryColor,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 3.5, horizontal: 8.0),
+                    child: Text(
+                      title,
+                      style: _titleTextStatus,
+                    ),
+                  ),
+                if (showAddButton)
+                  TextButton.icon(
+                      onPressed: () {},
+                      icon: LineIcon.plus(),
+                      label: Text('Добавить'))
+              ],
             ),
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 28.0,
-              // color: theme.primaryColor,
-              padding: EdgeInsets.symmetric(vertical: 3.5, horizontal: 8.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
-        ),
-      ),
+          ),
+        for (var index = 0; index < list.length; index++)
+          TodoWidget(
+            list[index],
+            index: index,
+            length: list.length,
+          )
+      ],
     );
   }
 }

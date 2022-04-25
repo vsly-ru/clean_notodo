@@ -19,4 +19,10 @@ class TodoRepository implements ITodoRepository {
     return Future.value(const Left(
         Failure(message: 'Method not implemented.', code: 'not_implemented')));
   }
+
+  @override
+  Future<Either<Failure, ToDo>> addUpdateOne(ToDo todo) {
+    return Future.value(const Left(
+        Failure(message: 'Method not implemented.', code: 'not_implemented')));
+  }
 }

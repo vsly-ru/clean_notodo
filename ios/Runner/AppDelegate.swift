@@ -13,13 +13,15 @@ import FirebaseAuth
         // get flutter view controller
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
         // get device channel
-        let deviceChannel = FlutterMethodChannel(name: "notodo.flutter.methodchannel/iOS",
+        let deviceChannel = FlutterMethodChannel(name: "notodo.flutter.methodchannel",
                                                  binaryMessenger: controller.binaryMessenger);
+        
+        // firebase init
+        FirebaseApp.configure();
+        
         // handle method channel logic
         self.handleMethodHandler(deviceChannel: deviceChannel);
         
-        // firebase
-        FirebaseApp.configure();
         
         // Flutter app
         GeneratedPluginRegistrant.register(with: self)
@@ -57,11 +59,117 @@ import FirebaseAuth
                                 return
                             default:
                                 print("Error: \(error.localizedDescription)")
+                                result(FlutterError.init(code: "authError", message: "Error: \(error.localizedDescription)", details: nil))
+                                return
                             }
                         } else {
-                            print("User signs up successfully")
                             let newUserInfo = Auth.auth().currentUser
                             let email = newUserInfo?.email
+                            self.reply(result: result, isSuccess: true, message: "success", data: newUserInfo)
+                        }
+                    }
+                } else {
+                    result(FlutterError.init(code: "wrong_args", message: nil, details: nil))
+                }
+                return
+            }
+            
+            if call.method == "signin" {
+                if let args = call.arguments as? Dictionary<String, Any>,
+                   let email = args["email"] as? String,
+                   let password = args["password"] as? String {
+                    Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                        if let error = error as? NSError {
+                            switch AuthErrorCode(rawValue: error.code) {
+                            case .operationNotAllowed:
+                                result(FlutterError.init(code: "operationNotAllowed", message: nil, details: nil))
+                                return
+                            case .wrongPassword:
+                                result(FlutterError.init(code: "wrongPassword", message: nil, details: nil))
+                                return
+                            case .invalidEmail:
+                                result(FlutterError.init(code: "invalidEmail", message: nil, details: nil))
+                                return
+                            case .missingEmail:
+                                result(FlutterError.init(code: "missingEmail", message: nil, details: nil))
+                                return
+                            default:
+                                print("Error: \(error.localizedDescription)")
+                                result(FlutterError.init(code: "authError", message: "Error: \(error.localizedDescription)", details: nil))
+                                return
+                            }
+                        } else {
+                            let newUserInfo = Auth.auth().currentUser
+                            let email = newUserInfo?.email
+                            self.reply(result: result, isSuccess: true, message: "success", data: newUserInfo)
+                        }
+                    }
+                } else {
+                    result(FlutterError.init(code: "wrong_args", message: nil, details: nil))
+                }
+                return
+            }
+            
+            let db = Firestore.firestore()
+            
+            if call.method == "set_doc" {
+                if let args = call.arguments as? Dictionary<String, Any>,
+                   let collection = args["collection"] as? String,
+                   let id = args["id"] as? String,
+                   let doc = args["doc"] as? Dictionary<String, Any>
+                {
+                    db.collection(collection).document(id).setData(doc)
+                    { err in
+                        if let err = err {
+                            result(FlutterError.init(code: "set_doc_failed", message: nil, details: nil))
+                        } else {
+                            self.reply(result: result, isSuccess: true, message: "ok", data: doc)
+                        }
+                    }
+                } else {
+                    result(FlutterError.init(code: "wrong_args", message: nil, details: nil))
+                }
+                return
+            }
+            
+            if call.method == "get_doc" {
+                if let args = call.arguments as? Dictionary<String, Any>,
+                   let collection = args["collection"] as? String,
+                   let id = args["id"] as? String
+                {
+                    db.collection(collection).document(id).getDocument
+                    { (document, error) in
+                        if let document = document, document.exists {
+                            var _doc = document.data();
+                            _doc!["id"] = document.documentID;
+                            self.reply(result: result, isSuccess: true, message: "ok", data: _doc)
+                        } else {
+                            result(FlutterError.init(code: "not_found", message: nil, details: nil))
+                        }
+                    }
+                } else {
+                    result(FlutterError.init(code: "wrong_args", message: nil, details: nil))
+                }
+                return
+            }
+            
+            if call.method == "get_docs" {
+                if let args = call.arguments as? Dictionary<String, Any>,
+                   let collection = args["collection"] as? String,
+                   let field = args["field"] as? String,
+                   let uid = args["uid"] as? String
+                {
+                    db.collection(collection).whereField(field, isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            result(FlutterError.init(code: "query_failed", message: err.localizedDescription, details: nil))
+                        } else {
+                            var documents = [] as Array<Dictionary<String,Any>>;
+                            for doc in querySnapshot!.documents {
+                                var _doc = doc.data();
+                                _doc["id"] = doc.documentID;
+                                documents.append(_doc);
+                            }
+                            self.reply(result: result, isSuccess: true, message: "ok", data: documents)
                         }
                     }
                 } else {

@@ -9,5 +9,5 @@ class AppStateInfo with _$AppStateInfo {
       {bool? authenticated,
       bool? offlineMode,
       User? user,
-      String? pageId}) = _AppStateInfo;
+      String? todoId}) = _AppStateInfo;
 }

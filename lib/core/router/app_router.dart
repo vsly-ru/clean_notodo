@@ -15,7 +15,7 @@ const _initialRoute = PageRoutes.home;
 @injectable
 class AppRouter extends GoRouter {
   final AppStateManager _appStateManager;
-  late final List<StreamSubscription> _deligated;
+  late final List<StreamSubscription> _delegated;
 
   AppRouter(this._appStateManager)
       : super(
@@ -60,34 +60,35 @@ class AppRouter extends GoRouter {
                   pageBuilder: (context, state) {
                     return MaterialPage(
                       key: state.pageKey,
-                      child: SigninPage(_appStateManager),
+                      child: SigninPage(cubit: getIt()),
                     );
                   },
                   redirect: ((state) {
-                    if (_appStateManager.state.authenticated == true)
+                    if (_appStateManager.state.authenticated == true) {
                       return PageRoutes.todoList;
+                    }
                   })),
               GoRoute(
                   path: PageRoutes.todoList,
                   pageBuilder: (context, state) {
                     return MaterialPage(
                       key: state.pageKey,
-                      child: PageTodoList(getIt()),
+                      child: PageTodoList(cubit: getIt()),
                     );
                   }),
             ]) {
-    _subscribeDeligatedEvents();
+    _subscribeDelegatedEvents();
   }
 
-  void _subscribeDeligatedEvents() {
-    // TODO: subscribe to deligated events
-    _deligated = [];
+  void _subscribeDelegatedEvents() {
+    // TODO: subscribe to delegated events
+    _delegated = [];
   }
 
   @override
   void dispose() {
-    for (final deligatedSubscription in _deligated) {
-      deligatedSubscription.cancel();
+    for (final delegatedSubscription in _delegated) {
+      delegatedSubscription.cancel();
     }
 
     super.dispose();

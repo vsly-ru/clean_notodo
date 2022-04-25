@@ -8,25 +8,34 @@ import 'package:notodo/core/enums.dart';
 import 'package:notodo/core/errors/failure.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
+import 'package:notodo/features/todos/domain/usecases/get_todo_list.dart';
 
 part 'todo_list_state.dart';
 part 'todo_list_cubit.freezed.dart';
 
 class TodoListCubit extends Cubit<TodoListState> {
-  final ITodoRepository _repository;
-  TodoListCubit(this._repository) : super(TodoListState.initial());
+  final GetTodoListUC _getTodoListUC;
 
-  @override
-  void onChange(Change<TodoListState> change) {
-    super.onChange(change);
+  TodoListCubit(this._getTodoListUC) : super(TodoListState.initial());
 
-    log('state changed: $change', name: 'TodoListCubit');
+  // debug
+  // @override
+  // void onChange(Change<TodoListState> change) {
+  //   super.onChange(change);
+  //   log('state changed: $change', name: 'TodoListCubit');
+  // }
+
+  // 🅰️ Actions
+
+  Future<void> addOrEditTodo(ToDo? todo) async {
+    //
   }
 
   Future<void> loadAll() async {
     try {
-      emit(const TodoListState(isLoading: true));
-      final result = await _repository.getList(null);
+      final copyData = state.items;
+      emit(TodoListState(isLoading: true, items: copyData));
+      final result = await _getTodoListUC.execute(null);
       result.fold(
           (l) => _failed(l), (r) => emit(TodoListState(items: _mapList(r))));
     } catch (err) {
@@ -38,7 +47,7 @@ class TodoListCubit extends Cubit<TodoListState> {
     }
   }
 
-  // _
+  // _ _ _ _ _ _ _ _
 
   void _failed(Failure failure) {
     emit(TodoListState(errMessage: '[${failure.code}] ${failure.message}'));

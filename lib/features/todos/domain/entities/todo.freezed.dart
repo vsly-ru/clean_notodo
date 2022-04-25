@@ -19,14 +19,20 @@ class _$ToDoTearOff {
   const _$ToDoTearOff();
 
   _ToDo call(
-      {required String title,
+      {required String id,
+      required String title,
       required String description,
+      String owner = '',
+      String actor = '',
       required String fullDescription,
       required bool isComplited,
       required bool isInWork}) {
     return _ToDo(
+      id: id,
       title: title,
       description: description,
+      owner: owner,
+      actor: actor,
       fullDescription: fullDescription,
       isComplited: isComplited,
       isInWork: isInWork,
@@ -39,8 +45,13 @@ const $ToDo = _$ToDoTearOff();
 
 /// @nodoc
 mixin _$ToDo {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get owner =>
+      throw _privateConstructorUsedError; // task owner (creator)
+  String get actor =>
+      throw _privateConstructorUsedError; // one who must complite the task
   String get fullDescription => throw _privateConstructorUsedError;
   bool get isComplited => throw _privateConstructorUsedError;
   bool get isInWork => throw _privateConstructorUsedError;
@@ -54,8 +65,11 @@ abstract class $ToDoCopyWith<$Res> {
   factory $ToDoCopyWith(ToDo value, $Res Function(ToDo) then) =
       _$ToDoCopyWithImpl<$Res>;
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String description,
+      String owner,
+      String actor,
       String fullDescription,
       bool isComplited,
       bool isInWork});
@@ -71,13 +85,20 @@ class _$ToDoCopyWithImpl<$Res> implements $ToDoCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? owner = freezed,
+    Object? actor = freezed,
     Object? fullDescription = freezed,
     Object? isComplited = freezed,
     Object? isInWork = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -85,6 +106,14 @@ class _$ToDoCopyWithImpl<$Res> implements $ToDoCopyWith<$Res> {
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as String,
+      actor: actor == freezed
+          ? _value.actor
+          : actor // ignore: cast_nullable_to_non_nullable
               as String,
       fullDescription: fullDescription == freezed
           ? _value.fullDescription
@@ -108,8 +137,11 @@ abstract class _$ToDoCopyWith<$Res> implements $ToDoCopyWith<$Res> {
       __$ToDoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String description,
+      String owner,
+      String actor,
       String fullDescription,
       bool isComplited,
       bool isInWork});
@@ -126,13 +158,20 @@ class __$ToDoCopyWithImpl<$Res> extends _$ToDoCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? owner = freezed,
+    Object? actor = freezed,
     Object? fullDescription = freezed,
     Object? isComplited = freezed,
     Object? isInWork = freezed,
   }) {
     return _then(_ToDo(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -140,6 +179,14 @@ class __$ToDoCopyWithImpl<$Res> extends _$ToDoCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as String,
+      actor: actor == freezed
+          ? _value.actor
+          : actor // ignore: cast_nullable_to_non_nullable
               as String,
       fullDescription: fullDescription == freezed
           ? _value.fullDescription
@@ -161,17 +208,28 @@ class __$ToDoCopyWithImpl<$Res> extends _$ToDoCopyWithImpl<$Res>
 
 class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
   const _$_ToDo(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.description,
+      this.owner = '',
+      this.actor = '',
       required this.fullDescription,
       required this.isComplited,
       required this.isInWork});
 
   @override
+  final String id;
+  @override
   final String title;
   @override
   final String description;
+  @JsonKey()
   @override
+  final String owner;
+  @JsonKey()
+  @override // task owner (creator)
+  final String actor;
+  @override // one who must complite the task
   final String fullDescription;
   @override
   final bool isComplited;
@@ -180,7 +238,7 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ToDo(title: $title, description: $description, fullDescription: $fullDescription, isComplited: $isComplited, isInWork: $isInWork)';
+    return 'ToDo(id: $id, title: $title, description: $description, owner: $owner, actor: $actor, fullDescription: $fullDescription, isComplited: $isComplited, isInWork: $isInWork)';
   }
 
   @override
@@ -188,8 +246,11 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ToDo'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('owner', owner))
+      ..add(DiagnosticsProperty('actor', actor))
       ..add(DiagnosticsProperty('fullDescription', fullDescription))
       ..add(DiagnosticsProperty('isComplited', isComplited))
       ..add(DiagnosticsProperty('isInWork', isInWork));
@@ -200,9 +261,12 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ToDo &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.owner, owner) &&
+            const DeepCollectionEquality().equals(other.actor, actor) &&
             const DeepCollectionEquality()
                 .equals(other.fullDescription, fullDescription) &&
             const DeepCollectionEquality()
@@ -213,8 +277,11 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(owner),
+      const DeepCollectionEquality().hash(actor),
       const DeepCollectionEquality().hash(fullDescription),
       const DeepCollectionEquality().hash(isComplited),
       const DeepCollectionEquality().hash(isInWork));
@@ -227,17 +294,26 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
 
 abstract class _ToDo implements ToDo {
   const factory _ToDo(
-      {required String title,
+      {required String id,
+      required String title,
       required String description,
+      String owner,
+      String actor,
       required String fullDescription,
       required bool isComplited,
       required bool isInWork}) = _$_ToDo;
 
   @override
+  String get id;
+  @override
   String get title;
   @override
   String get description;
   @override
+  String get owner;
+  @override // task owner (creator)
+  String get actor;
+  @override // one who must complite the task
   String get fullDescription;
   @override
   bool get isComplited;

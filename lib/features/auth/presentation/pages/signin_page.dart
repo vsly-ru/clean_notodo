@@ -1,17 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:notodo/core/router/page_routes.dart';
-import 'package:notodo/core/state/app_state_manager.dart';
-import 'package:notodo/di.dart';
-
-import '../../../../core/router/app_router.dart';
+import 'package:notodo/features/auth/presentation/cubit/login_cubit.dart';
 
 class SigninPage extends HookWidget {
-  final AppStateManager _stateManager;
-  const SigninPage(this._stateManager, {Key? key}) : super(key: key);
+  // final AppStateManager _stateManager;
+  // final LoginWithEmailUC _loginWithEmailUC;
+  // final RegisterWithEmailUC _registerWithEmailUC;
+  // final LogoutUC _logoutUC;
+  final LoginCubit cubit;
+  const SigninPage({required this.cubit, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _emailCtrl = useTextEditingController();
+    final _passwordCtrl = useTextEditingController();
+    // >>
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -24,13 +28,7 @@ class SigninPage extends HookWidget {
               const Text(
                 'Sign In',
                 style: TextStyle(fontSize: 24.0),
-              ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                  onPressed: () {
-                    _stateManager.setOfflineMode(true);
-                  },
-                  child: const Text('Открыть в offline режиме'))
+              )
             ],
           ),
         ),

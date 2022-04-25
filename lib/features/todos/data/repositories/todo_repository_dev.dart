@@ -28,10 +28,17 @@ class DevTodoRepository implements ITodoRepository {
     }
     return Right([_getDummyTodo(1), _getDummyTodo(2), _getDummyTodo(3)]);
   }
+
+  @override
+  Future<Either<Failure, ToDo>> addUpdateOne(ToDo todo) async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    return Right(todo);
+  }
 }
 
 ToDo _getDummyTodo(int n) {
   return ToDo(
+      id: '$n',
       title: 'Dev Task #$n',
       description: 'Get the #$n task done!',
       fullDescription: 'Get the $n task done before it\'s too late!',
