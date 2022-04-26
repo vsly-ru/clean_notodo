@@ -1,7 +1,7 @@
 # Nothing ToDo
 
-Yet another todo flutter project.
+Yet another (example) todo flutter project.
 
 ## Technologies
 
-Clean Architecture, TDD, BLoC, freezed, dartz, get_it & injectable, mockito, go_router
+Clean Architecture, TDD, mockito, BLoC, freezed, dartz, get_it, injectable, go_router
