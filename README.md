@@ -4,4 +4,4 @@ Yet another todo flutter project.
 
 ## Technologies
 
-Clean Architecture, TDD, BLoC, freezed, dartz, mockito, go_router, injectable
+Clean Architecture, TDD, BLoC, freezed, dartz, get_it & injectable, mockito, go_router
