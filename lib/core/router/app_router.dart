@@ -60,7 +60,9 @@ class AppRouter extends GoRouter {
                   pageBuilder: (context, state) {
                     return MaterialPage(
                       key: state.pageKey,
-                      child: SigninPage(cubit: getIt()),
+                      child: SigninPage(
+                          appStateManager: _appStateManager,
+                          repository: getIt()),
                     );
                   },
                   redirect: ((state) {
@@ -73,7 +75,7 @@ class AppRouter extends GoRouter {
                   pageBuilder: (context, state) {
                     return MaterialPage(
                       key: state.pageKey,
-                      child: PageTodoList(cubit: getIt()),
+                      child: PageTodoList(repository: getIt()),
                     );
                   }),
             ]) {
