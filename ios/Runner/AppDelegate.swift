@@ -34,6 +34,17 @@ import FirebaseAuth
                 "data":data])
     }
     
+    
+    private func convertUser(user: User) -> Dictionary<String,String?> {
+        var re = Dictionary<String,String?>();
+        re["email"] = user.email;
+        re["name"] = user.displayName;
+        re["uid"] = user.uid;
+        re["profilePictureUrl"] = user.photoURL?.absoluteString;
+        return re
+    }
+
+    
     private func handleMethodHandler(deviceChannel: FlutterMethodChannel) {
         deviceChannel.setMethodCallHandler({
             (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
@@ -65,7 +76,7 @@ import FirebaseAuth
                         } else {
                             let newUserInfo = Auth.auth().currentUser
                             let email = newUserInfo?.email
-                            self.reply(result: result, isSuccess: true, message: "success", data: newUserInfo)
+                            self.reply(result: result, isSuccess: true, message: "success", data: self.convertUser(user: newUserInfo!))
                         }
                     }
                 } else {
@@ -101,7 +112,7 @@ import FirebaseAuth
                         } else {
                             let newUserInfo = Auth.auth().currentUser
                             let email = newUserInfo?.email
-                            self.reply(result: result, isSuccess: true, message: "success", data: newUserInfo)
+                            self.reply(result: result, isSuccess: true, message: "success", data: self.convertUser(user: newUserInfo!))
                         }
                     }
                 } else {
@@ -191,4 +202,4 @@ import FirebaseAuth
             
         })
     }
-}
+    }
