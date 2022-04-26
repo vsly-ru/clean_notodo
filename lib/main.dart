@@ -4,10 +4,11 @@ import 'package:notodo/core/constants.dart';
 import 'package:notodo/di.dart';
 import 'package:notodo/my_app.dart';
 
+const kRunningEnvironment = !kDebugMode ? Env.dev : Env.prod;
+
 void main() {
-  const runningEnvironment = kDebugMode ? Env.dev : Env.prod;
-  if (kDebugMode) print('Running in $runningEnvironment mode');
+  if (kDebugMode) print('Running in $kRunningEnvironment mode');
   // prepare dependencies for incection (for a selected environment)
-  configureDependencies(runningEnvironment);
+  configureDependencies(kRunningEnvironment);
   runApp(const MyApp());
 }
