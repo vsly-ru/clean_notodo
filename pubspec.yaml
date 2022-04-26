@@ -32,7 +32,7 @@ dependencies:
   rxdart: any
   # advanced classes
   equatable: any
-  # some magic
+  # widgets with hooks
   flutter_hooks: any
   # tests mockups
   mockito: ^5.1.0
