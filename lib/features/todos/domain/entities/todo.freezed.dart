@@ -22,8 +22,8 @@ class _$ToDoTearOff {
       {required String id,
       required String title,
       required String description,
-      String owner = '',
-      String actor = '',
+      required String owner,
+      required String actor,
       required String fullDescription,
       required bool isComplited,
       required bool isInWork}) {
@@ -211,8 +211,8 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
       {required this.id,
       required this.title,
       required this.description,
-      this.owner = '',
-      this.actor = '',
+      required this.owner,
+      required this.actor,
       required this.fullDescription,
       required this.isComplited,
       required this.isInWork});
@@ -223,10 +223,8 @@ class _$_ToDo with DiagnosticableTreeMixin implements _ToDo {
   final String title;
   @override
   final String description;
-  @JsonKey()
   @override
   final String owner;
-  @JsonKey()
   @override // task owner (creator)
   final String actor;
   @override // one who must complite the task
@@ -297,8 +295,8 @@ abstract class _ToDo implements ToDo {
       {required String id,
       required String title,
       required String description,
-      String owner,
-      String actor,
+      required String owner,
+      required String actor,
       required String fullDescription,
       required bool isComplited,
       required bool isInWork}) = _$_ToDo;

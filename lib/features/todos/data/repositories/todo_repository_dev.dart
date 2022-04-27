@@ -42,6 +42,8 @@ ToDo _getDummyTodo(int n) {
       title: 'Dev Task #$n',
       description: 'Get the #$n task done!',
       fullDescription: 'Get the $n task done before it\'s too late!',
+      owner: '111',
+      actor: '111',
       isComplited: false,
       isInWork: n.isEven);
 }

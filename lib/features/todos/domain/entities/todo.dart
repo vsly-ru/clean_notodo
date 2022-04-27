@@ -9,8 +9,8 @@ class ToDo with _$ToDo {
       {required String id,
       required String title,
       required String description,
-      @Default('') String owner, // task owner (creator)
-      @Default('') String actor, // one who must complite the task
+      required String owner, // task owner (creator)
+      required String actor, // one who must complite the task
       required String fullDescription,
       required bool isComplited,
       required bool isInWork}) = _ToDo;

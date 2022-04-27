@@ -1,20 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:notodo/core/util/platform_info.dart';
+import 'package:notodo/features/todos/data/models/todo_model.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:notodo/features/todos/domain/usecases/add_update_todo.dart';
 import 'package:notodo/features/todos/domain/usecases/get_one_todo.dart';
+import 'package:notodo/features/todos/domain/usecases/get_todo_list.dart';
 
 import '../setup.dart';
 import 'get_one_todo_test.mocks.dart';
 
-@GenerateMocks([ITodoRepository])
 void main() {
   testSetUp();
-
-  const tid = '123';
   const tTodo = ToDo(
       id: '123',
       title: 'title',
@@ -24,23 +23,17 @@ void main() {
       actor: '111',
       isComplited: false,
       isInWork: true);
-
   group('todos', () {
     test(
-      '[addUpdateOne] Add task to repository',
+      '[TodoDataModel] Convert to map == and back',
       () async {
         // arrange
-        final mockRepository = MockITodoRepository();
-        when(mockRepository.addUpdateOne(any))
-            .thenAnswer((_) async => const Right(tTodo));
-        final usecase = AddUpdateTodoUC(mockRepository);
+        final convert = TodoDataModel();
         // act
-        final result =
-            await usecase.execute(const AddUpdateTodoUCArgs(todo: tTodo));
+        final mapped = convert.toMap(tTodo);
+        final converted = convert.fromMap(mapped);
         // assert
-        expect(result, const Right(tTodo));
-        verify(mockRepository.addUpdateOne(tTodo));
-        verifyNoMoreInteractions(mockRepository);
+        expect(converted, tTodo);
       },
     );
   });

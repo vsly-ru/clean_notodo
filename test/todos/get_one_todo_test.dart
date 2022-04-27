@@ -19,6 +19,8 @@ void main() {
       title: 'title',
       description: 'description',
       fullDescription: 'fullDescription',
+      owner: '111',
+      actor: '111',
       isComplited: false,
       isInWork: true);
 
