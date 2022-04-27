@@ -14,7 +14,7 @@ class GetTodoListUC
   GetTodoListUC(this._repository);
 
   @override
-  Future<Either<Failure, List<ToDo>>> execute(bool onlyMide) async {
-    return await _repository.getList(onlyMide);
+  Future<Either<Failure, List<ToDo>>> execute(bool onlyMine) async {
+    return await _repository.getList(onlyMine);
   }
 }

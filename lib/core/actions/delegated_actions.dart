@@ -3,7 +3,7 @@
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:rxdart/rxdart.dart';
 
-abstract class DelegatedActions {
+abstract class IDelegatedActions {
   /// open adding page
   final addTodo = PublishSubject<void>();
 

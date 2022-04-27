@@ -5,7 +5,7 @@ import 'package:notodo/features/todos/domain/entities/todo.dart';
 
 @injectable
 class OpenViewEditPage implements Action {
-  final DelegatedActions delegate;
+  final IDelegatedActions delegate;
 
   const OpenViewEditPage(this.delegate);
 

@@ -5,7 +5,7 @@ import 'package:notodo/features/todos/domain/entities/todo.dart';
 
 @injectable
 class OpenAddPage implements Action {
-  final DelegatedActions delegate;
+  final IDelegatedActions delegate;
 
   const OpenAddPage(this.delegate);
 

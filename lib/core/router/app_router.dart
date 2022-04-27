@@ -18,7 +18,7 @@ const _initialRoute = PageRoutes.home;
 @injectable
 class AppRouter extends GoRouter {
   final AppStateManager _appStateManager;
-  final DelegatedActions _delegatedActions;
+  final IDelegatedActions _delegatedActions;
   late final List<StreamSubscription> _delegated;
 
   AppRouter(this._appStateManager, this._delegatedActions)
@@ -118,8 +118,8 @@ class AppRouter extends GoRouter {
 
   @override
   void dispose() {
-    for (final delegatedSubscription in _delegated) {
-      delegatedSubscription.cancel();
+    for (final subscription in _delegated) {
+      subscription.cancel();
     }
 
     super.dispose();
