@@ -38,7 +38,7 @@ class FadeIn extends StatefulWidget {
       this.delay = 0,
       this.duration = 400,
       this.skipAnimation = false,
-      this.scale = 0.25,
+      this.scale = 0.9,
       this.opacity = 0.0})
       : super(key: key);
 
