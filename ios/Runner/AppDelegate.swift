@@ -130,7 +130,7 @@ import FirebaseAuth
                     db.collection(collection).document(id).setData(doc)
                     { err in
                         if let err = err {
-                            result(FlutterError.init(code: "set_doc_failed", message: nil, details: nil))
+                            result(FlutterError.init(code: "set_doc_failed", message: err.localizedDescription, details: nil))
                         } else {
                             self.reply(result: result, message: "success", data: doc)
                         }
@@ -166,7 +166,7 @@ import FirebaseAuth
                 if let args = call.arguments as? Dictionary<String, Any>,
                    let collection = args["collection"] as? String,
                    let field = args["field"] as? String,
-                   let uid = args["uid"] as? String
+                   let uid = Auth.auth().currentUser?.uid
                 {
                     db.collection(collection).whereField(field, isEqualTo: uid).getDocuments() { (querySnapshot, err) in
                         if let err = err {
