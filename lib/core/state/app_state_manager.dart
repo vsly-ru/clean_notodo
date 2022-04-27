@@ -19,12 +19,8 @@ class AppStateManager extends ValueNotifier<AppStateInfo> {
 
   AppStateInfo get state => value;
 
-  void setUser(User? user) {
-    value = value.copyWith(user: user);
-  }
-
-  void setAuthenticated(bool authenticated) {
-    value = value.copyWith(authenticated: authenticated);
+  void setAuthenticated(User? user) {
+    value = value.copyWith(authenticated: user != null, user: user);
   }
 
   void setOfflineMode(bool offlineMode) {
