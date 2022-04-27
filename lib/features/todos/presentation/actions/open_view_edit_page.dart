@@ -4,11 +4,11 @@ import 'package:notodo/core/actions/delegated_actions.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 
 @injectable
-class OpenAddEditPageAction implements Action {
+class OpenViewEditPage implements Action {
   final DelegatedActions delegate;
 
-  const OpenAddEditPageAction(this.delegate);
+  const OpenViewEditPage(this.delegate);
 
   @override
-  void call(covariant ToDo? todo) => delegate.openAddEditPage.add(todo);
+  void call(covariant ToDo todo) => delegate.openTodo.add(todo);
 }

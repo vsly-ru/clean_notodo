@@ -4,7 +4,8 @@ part of 'todo_add_edit_cubit.dart';
 class TodoAddEditState with _$TodoAddEditState {
   const factory TodoAddEditState({
     @Default(false) bool isLoading,
-    @Default(null) ToDo? editing,
+    @Default(false) bool isEditing,
+    @Default(null) ToDo? todo,
     @Default(null) String? errMessage,
   }) = _TodoAddEditState;
 

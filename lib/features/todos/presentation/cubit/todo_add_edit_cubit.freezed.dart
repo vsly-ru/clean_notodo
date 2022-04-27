@@ -20,11 +20,13 @@ class _$TodoAddEditStateTearOff {
 
   _TodoAddEditState call(
       {bool isLoading = false,
-      ToDo? editing = null,
+      bool isEditing = false,
+      ToDo? todo = null,
       String? errMessage = null}) {
     return _TodoAddEditState(
       isLoading: isLoading,
-      editing: editing,
+      isEditing: isEditing,
+      todo: todo,
       errMessage: errMessage,
     );
   }
@@ -36,7 +38,8 @@ const $TodoAddEditState = _$TodoAddEditStateTearOff();
 /// @nodoc
 mixin _$TodoAddEditState {
   bool get isLoading => throw _privateConstructorUsedError;
-  ToDo? get editing => throw _privateConstructorUsedError;
+  bool get isEditing => throw _privateConstructorUsedError;
+  ToDo? get todo => throw _privateConstructorUsedError;
   String? get errMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -49,9 +52,9 @@ abstract class $TodoAddEditStateCopyWith<$Res> {
   factory $TodoAddEditStateCopyWith(
           TodoAddEditState value, $Res Function(TodoAddEditState) then) =
       _$TodoAddEditStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading, ToDo? editing, String? errMessage});
+  $Res call({bool isLoading, bool isEditing, ToDo? todo, String? errMessage});
 
-  $ToDoCopyWith<$Res>? get editing;
+  $ToDoCopyWith<$Res>? get todo;
 }
 
 /// @nodoc
@@ -66,7 +69,8 @@ class _$TodoAddEditStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? editing = freezed,
+    Object? isEditing = freezed,
+    Object? todo = freezed,
     Object? errMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,9 +78,13 @@ class _$TodoAddEditStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      editing: editing == freezed
-          ? _value.editing
-          : editing // ignore: cast_nullable_to_non_nullable
+      isEditing: isEditing == freezed
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      todo: todo == freezed
+          ? _value.todo
+          : todo // ignore: cast_nullable_to_non_nullable
               as ToDo?,
       errMessage: errMessage == freezed
           ? _value.errMessage
@@ -86,13 +94,13 @@ class _$TodoAddEditStateCopyWithImpl<$Res>
   }
 
   @override
-  $ToDoCopyWith<$Res>? get editing {
-    if (_value.editing == null) {
+  $ToDoCopyWith<$Res>? get todo {
+    if (_value.todo == null) {
       return null;
     }
 
-    return $ToDoCopyWith<$Res>(_value.editing!, (value) {
-      return _then(_value.copyWith(editing: value));
+    return $ToDoCopyWith<$Res>(_value.todo!, (value) {
+      return _then(_value.copyWith(todo: value));
     });
   }
 }
@@ -104,10 +112,10 @@ abstract class _$TodoAddEditStateCopyWith<$Res>
           _TodoAddEditState value, $Res Function(_TodoAddEditState) then) =
       __$TodoAddEditStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading, ToDo? editing, String? errMessage});
+  $Res call({bool isLoading, bool isEditing, ToDo? todo, String? errMessage});
 
   @override
-  $ToDoCopyWith<$Res>? get editing;
+  $ToDoCopyWith<$Res>? get todo;
 }
 
 /// @nodoc
@@ -124,7 +132,8 @@ class __$TodoAddEditStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? editing = freezed,
+    Object? isEditing = freezed,
+    Object? todo = freezed,
     Object? errMessage = freezed,
   }) {
     return _then(_TodoAddEditState(
@@ -132,9 +141,13 @@ class __$TodoAddEditStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      editing: editing == freezed
-          ? _value.editing
-          : editing // ignore: cast_nullable_to_non_nullable
+      isEditing: isEditing == freezed
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      todo: todo == freezed
+          ? _value.todo
+          : todo // ignore: cast_nullable_to_non_nullable
               as ToDo?,
       errMessage: errMessage == freezed
           ? _value.errMessage
@@ -150,21 +163,27 @@ class _$_TodoAddEditState
     with DiagnosticableTreeMixin
     implements _TodoAddEditState {
   const _$_TodoAddEditState(
-      {this.isLoading = false, this.editing = null, this.errMessage = null});
+      {this.isLoading = false,
+      this.isEditing = false,
+      this.todo = null,
+      this.errMessage = null});
 
   @JsonKey()
   @override
   final bool isLoading;
   @JsonKey()
   @override
-  final ToDo? editing;
+  final bool isEditing;
+  @JsonKey()
+  @override
+  final ToDo? todo;
   @JsonKey()
   @override
   final String? errMessage;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TodoAddEditState(isLoading: $isLoading, editing: $editing, errMessage: $errMessage)';
+    return 'TodoAddEditState(isLoading: $isLoading, isEditing: $isEditing, todo: $todo, errMessage: $errMessage)';
   }
 
   @override
@@ -173,7 +192,8 @@ class _$_TodoAddEditState
     properties
       ..add(DiagnosticsProperty('type', 'TodoAddEditState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
-      ..add(DiagnosticsProperty('editing', editing))
+      ..add(DiagnosticsProperty('isEditing', isEditing))
+      ..add(DiagnosticsProperty('todo', todo))
       ..add(DiagnosticsProperty('errMessage', errMessage));
   }
 
@@ -183,7 +203,8 @@ class _$_TodoAddEditState
         (other.runtimeType == runtimeType &&
             other is _TodoAddEditState &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.editing, editing) &&
+            const DeepCollectionEquality().equals(other.isEditing, isEditing) &&
+            const DeepCollectionEquality().equals(other.todo, todo) &&
             const DeepCollectionEquality()
                 .equals(other.errMessage, errMessage));
   }
@@ -192,7 +213,8 @@ class _$_TodoAddEditState
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(editing),
+      const DeepCollectionEquality().hash(isEditing),
+      const DeepCollectionEquality().hash(todo),
       const DeepCollectionEquality().hash(errMessage));
 
   @JsonKey(ignore: true)
@@ -204,13 +226,16 @@ class _$_TodoAddEditState
 abstract class _TodoAddEditState implements TodoAddEditState {
   const factory _TodoAddEditState(
       {bool isLoading,
-      ToDo? editing,
+      bool isEditing,
+      ToDo? todo,
       String? errMessage}) = _$_TodoAddEditState;
 
   @override
   bool get isLoading;
   @override
-  ToDo? get editing;
+  bool get isEditing;
+  @override
+  ToDo? get todo;
   @override
   String? get errMessage;
   @override

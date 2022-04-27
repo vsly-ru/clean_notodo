@@ -33,9 +33,7 @@ class TodoListCubit extends Cubit<TodoListState> {
   // 🅰️ Actions
 
   /// null – go to adding page; instance of ToDo – go to editing
-  Future<void> addOrEditTodo(ToDo? todo) async {
-    //
-  }
+  Future<void> addOrEditTodo(ToDo? todo) async {}
 
   Future<void> loadAll() async {
     try {
