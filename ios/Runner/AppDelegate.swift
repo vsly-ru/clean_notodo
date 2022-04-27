@@ -28,19 +28,18 @@ import FirebaseAuth
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
-    private func reply(result: @escaping FlutterResult, isSuccess: Bool, message: String, data:Any) {
-        result(["isSuccess": isSuccess,
-                "message":message,
+    private func reply(result: @escaping FlutterResult, message: String, data:Any) {
+        result(["message":message,
                 "data":data])
     }
     
     
-    private func convertUser(user: User) -> Dictionary<String,String?> {
+    private func convertUser(user: User?) -> Dictionary<String,String?> {
         var re = Dictionary<String,String?>();
-        re["email"] = user.email;
-        re["name"] = user.displayName;
-        re["uid"] = user.uid;
-        re["profilePictureUrl"] = user.photoURL?.absoluteString;
+        re["email"] = user?.email;
+        re["name"] = user?.displayName;
+        re["uid"] = user?.uid;
+        re["profilePictureUrl"] = user?.photoURL?.absoluteString;
         return re
     }
 
@@ -75,8 +74,7 @@ import FirebaseAuth
                             }
                         } else {
                             let newUserInfo = Auth.auth().currentUser
-                            let email = newUserInfo?.email
-                            self.reply(result: result, isSuccess: true, message: "success", data: self.convertUser(user: newUserInfo!))
+                            self.reply(result: result, message: "success", data: self.convertUser(user: newUserInfo))
                         }
                     }
                 } else {
@@ -112,7 +110,7 @@ import FirebaseAuth
                         } else {
                             let newUserInfo = Auth.auth().currentUser
                             let email = newUserInfo?.email
-                            self.reply(result: result, isSuccess: true, message: "success", data: self.convertUser(user: newUserInfo!))
+                            self.reply(result: result, message: "success", data: self.convertUser(user: newUserInfo))
                         }
                     }
                 } else {
@@ -134,7 +132,7 @@ import FirebaseAuth
                         if let err = err {
                             result(FlutterError.init(code: "set_doc_failed", message: nil, details: nil))
                         } else {
-                            self.reply(result: result, isSuccess: true, message: "ok", data: doc)
+                            self.reply(result: result, message: "success", data: doc)
                         }
                     }
                 } else {
@@ -153,7 +151,7 @@ import FirebaseAuth
                         if let document = document, document.exists {
                             var _doc = document.data();
                             _doc!["id"] = document.documentID;
-                            self.reply(result: result, isSuccess: true, message: "ok", data: _doc)
+                            self.reply(result: result, message: "success", data: _doc)
                         } else {
                             result(FlutterError.init(code: "not_found", message: nil, details: nil))
                         }
@@ -180,7 +178,7 @@ import FirebaseAuth
                                 _doc["id"] = doc.documentID;
                                 documents.append(_doc);
                             }
-                            self.reply(result: result, isSuccess: true, message: "ok", data: documents)
+                            self.reply(result: result, message: "success", data: documents)
                         }
                     }
                 } else {
@@ -190,14 +188,11 @@ import FirebaseAuth
             }
             
             if call.method == "ping" {
-                result("pong");
+                self.reply(result:result, message: "success", data: "pong")
                 return
             }
-            if call.method == "test" {
-                self.reply(result:result, isSuccess: true, message: "", data: "test")
-                return
-            }
-            // if nothing matched the method name
+            
+            // fallback, if nothing matched the method name
             result(FlutterMethodNotImplemented)
             
         })
