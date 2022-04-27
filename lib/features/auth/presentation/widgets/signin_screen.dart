@@ -16,6 +16,7 @@ class SigninScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context);
     // state
     final state = cubit.state;
     final bool isLoading = state.isLoading;
@@ -27,10 +28,10 @@ class SigninScreen extends HookWidget {
     // build widgets >>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: ListView(
+      child: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 36.0),
+          const SizedBox(height: 40),
           // ToggleTwo(
           //   width: 250.0,
           //   height: 36.0,

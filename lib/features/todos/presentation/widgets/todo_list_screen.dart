@@ -61,10 +61,11 @@ class TodoListScreen extends HookWidget {
             child: FadeIn(
               delay: _animationDuration,
               duration: _animationDuration,
-              offset: Offset(0, 0),
               opacity: 0.5,
               child: OptionRow(
                 'Выполненные задачи',
+                roundTop: false,
+                radius: 15.0,
                 value: complited.length.toString(),
                 icon: LineIcons.checkCircle,
                 onTap: complited.length > 0

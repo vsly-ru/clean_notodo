@@ -32,6 +32,7 @@ class TodoListCubit extends Cubit<TodoListState> {
 
   // 🅰️ Actions
 
+  /// null – go to adding page; instance of ToDo – go to editing
   Future<void> addOrEditTodo(ToDo? todo) async {
     //
   }
@@ -40,7 +41,7 @@ class TodoListCubit extends Cubit<TodoListState> {
     try {
       final copyData = state.items;
       emit(TodoListState(isLoading: true, items: copyData));
-      final result = await _getTodoListUC.execute(null);
+      final result = await _getTodoListUC.execute(false);
       result.fold(
           (l) => _failed(l), (r) => emit(TodoListState(items: _mapList(r))));
     } catch (err) {

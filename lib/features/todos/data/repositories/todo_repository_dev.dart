@@ -1,9 +1,9 @@
-import 'dart:math';
+// dev implementation of the repository to test in dev mode (without accessing production)
 
+import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:notodo/core/constants.dart';
-import 'package:notodo/core/enums.dart';
 import 'package:notodo/core/errors/failure.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
@@ -17,7 +17,7 @@ class DevTodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<Either<Failure, List<ToDo>>> getList(TodoStatus? filter) async {
+  Future<Either<Failure, List<ToDo>>> getList(bool onlyMine) async {
     final random = Random();
     await Future.delayed(
         Duration(milliseconds: (random.nextDouble() * 3000).ceil()));

@@ -5,7 +5,6 @@ import 'package:line_icons/line_icons.dart';
 const _rowHeight = 48.0;
 const _rowVerticalPadding = 4.0;
 const _rowHorizontalPadding = 12.0;
-const _radius = 8.0;
 const _fontWeight = FontWeight.w300;
 
 class OptionRow extends HookWidget {
@@ -42,6 +41,9 @@ class OptionRow extends HookWidget {
   /// if this is the last (or the only) element in a list
   final bool roundBottom;
 
+  /// border radius
+  final double radius;
+
   /// a function to call on tap/click (also shows an optional arrow on the right when provided)
   final Function()? onTap;
   // tap (hold) animation duration
@@ -60,6 +62,7 @@ class OptionRow extends HookWidget {
       this.hideArrow = false,
       this.roundTop = true,
       this.roundBottom = true,
+      this.radius = 8.0,
       this.duration = 800});
 
   @override
@@ -72,15 +75,15 @@ class OptionRow extends HookWidget {
     final MQ = MediaQuery.of(context);
     final rowInnerHeight = height - (_rowVerticalPadding * 2);
     final BorderRadius? borderRadius = roundTop == roundBottom
-        ? BorderRadius.circular(_radius)
+        ? BorderRadius.circular(radius)
         : roundTop
-            ? const BorderRadius.only(
-                topLeft: Radius.circular(_radius),
-                topRight: Radius.circular(_radius))
+            ? BorderRadius.only(
+                topLeft: Radius.circular(radius),
+                topRight: Radius.circular(radius))
             : roundBottom
-                ? const BorderRadius.only(
-                    bottomLeft: Radius.circular(_radius),
-                    bottomRight: Radius.circular(_radius))
+                ? BorderRadius.only(
+                    bottomLeft: Radius.circular(radius),
+                    bottomRight: Radius.circular(radius))
                 : null;
     // 👉
     return MouseRegion(

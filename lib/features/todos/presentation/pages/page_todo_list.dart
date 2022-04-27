@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_it/get_it.dart';
+import 'package:notodo/core/state/app_state_manager.dart';
 import 'package:notodo/core/widgets/default_screen.dart';
 import 'package:notodo/core/widgets/failed_widget.dart';
 import 'package:notodo/core/widgets/placeholder.dart';
@@ -15,9 +16,12 @@ import 'package:notodo/features/todos/presentation/widgets/todo_list_scaffold.da
 import 'package:notodo/features/todos/presentation/widgets/todo_list_screen.dart';
 
 class PageTodoList extends HookWidget {
+  final AppStateManager appStateManager;
   final ITodoRepository repository;
 
-  const PageTodoList({required this.repository, Key? key}) : super(key: key);
+  const PageTodoList(
+      {required this.repository, required this.appStateManager, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

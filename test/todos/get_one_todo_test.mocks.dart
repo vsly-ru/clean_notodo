@@ -6,7 +6,6 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:notodo/core/enums.dart' as _i7;
 import 'package:notodo/core/errors/failure.dart' as _i5;
 import 'package:notodo/features/todos/domain/entities/todo.dart' as _i6;
 import 'package:notodo/features/todos/domain/repositories/todo_repository.dart'
@@ -39,9 +38,8 @@ class MockITodoRepository extends _i1.Mock implements _i3.ITodoRepository {
                   _FakeEither_0<_i5.Failure, _i6.ToDo>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.ToDo>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.ToDo>>> getList(
-          _i7.TodoStatus? filter) =>
-      (super.noSuchMethod(Invocation.method(#getList, [filter]),
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.ToDo>>> getList(bool? onlyMine) =>
+      (super.noSuchMethod(Invocation.method(#getList, [onlyMine]),
           returnValue: Future<_i2.Either<_i5.Failure, List<_i6.ToDo>>>.value(
               _FakeEither_0<_i5.Failure, List<_i6.ToDo>>())) as _i4
           .Future<_i2.Either<_i5.Failure, List<_i6.ToDo>>>);

@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:notodo/features/todos/domain/usecases/add_update_todo.dart';
 import 'package:notodo/features/todos/domain/usecases/get_one_todo.dart';
 
 import '../setup.dart';
@@ -30,12 +31,13 @@ void main() {
         final mockRepository = MockITodoRepository();
         when(mockRepository.addUpdateOne(any))
             .thenAnswer((_) async => const Right(tTodo));
-        final usecase = GetOneTodoUC(mockRepository);
+        final usecase = AddUpdateTodoUC(mockRepository);
         // act
-        final result = await usecase.execute(const GetOneTodoArgs(id: tid));
+        final result =
+            await usecase.execute(const AddUpdateTodoUCArgs(todo: tTodo));
         // assert
         expect(result, const Right(tTodo));
-        verify(mockRepository.getOne(tid));
+        verify(mockRepository.addUpdateOne(tTodo));
         verifyNoMoreInteractions(mockRepository);
       },
     );

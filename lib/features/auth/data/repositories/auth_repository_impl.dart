@@ -11,6 +11,7 @@ import 'package:notodo/core/platform_channel.dart';
 import 'package:notodo/di.dart';
 import 'package:notodo/features/auth/domain/entities/user.dart';
 import 'package:notodo/features/auth/domain/repositories/auth_repository.dart';
+import 'package:notodo/core/extensions/firebase_fix.dart';
 
 @Injectable(as: IAuthRepository, env: [Env.prod])
 class AuthRepository implements IAuthRepository {
@@ -20,16 +21,12 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<AuthRepositoryResult> loginWithEmail(
       String email, String password) async {
-    Map<String, dynamic>? result = await _platformChannel
-        .invokeMapMethod<String, dynamic>(
+    Map<Object?, Object?>? result = await _platformChannel
+        .invokeMapMethod<Object?, Object?>(
             'signin', <String, String>{"email": email, "password": password});
     if (kDebugMode) print(result);
-    if (result != null) {
-      result = jsonDecode(jsonEncode(result)); // firebase format fix 🤷‍♂️
-    }
-
-    if (result != null && result["data"] != null) {
-      final Map<String, dynamic> data = result["data"];
+    final data = result?.fix["data"];
+    if (data != null) {
       final user = User(
           uid: data["uid"]!,
           email: data["email"]!,
@@ -44,16 +41,12 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<AuthRepositoryResult> registerWithEmail(
       String email, String password) async {
-    Map<String, dynamic>? result = await _platformChannel
-        .invokeMapMethod<String, dynamic>(
+    Map<Object?, Object?>? result = await _platformChannel
+        .invokeMapMethod<Object?, Object?>(
             'signup', <String, String>{"email": email, "password": password});
     if (kDebugMode) print(result);
-    if (result != null) {
-      result = jsonDecode(jsonEncode(result)); // firebase format fix 🤷‍♂️
-    }
-
-    if (result != null && result["data"] != null) {
-      final Map<String, dynamic> data = result["data"];
+    final data = result?.fix["data"];
+    if (data != null) {
       final user = User(
           uid: data["uid"]!,
           email: data["email"]!,

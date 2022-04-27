@@ -14,7 +14,7 @@ import 'get_one_todo_test.mocks.dart';
 @GenerateMocks([ITodoRepository])
 void main() {
   testSetUp();
-  const tFilter = null;
+  const tFilter = false;
   const tTodos = [
     ToDo(
         id: '123',

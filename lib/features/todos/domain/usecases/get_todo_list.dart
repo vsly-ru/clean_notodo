@@ -8,13 +8,13 @@ import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
 
 @injectable
 class GetTodoListUC
-    implements IUsecase<TodoStatus?, Future<Either<Failure, List<ToDo>>>> {
+    implements IUsecase<bool, Future<Either<Failure, List<ToDo>>>> {
   final ITodoRepository _repository;
 
   GetTodoListUC(this._repository);
 
   @override
-  Future<Either<Failure, List<ToDo>>> execute(TodoStatus? filter) async {
-    return await _repository.getList(filter);
+  Future<Either<Failure, List<ToDo>>> execute(bool onlyMide) async {
+    return await _repository.getList(onlyMide);
   }
 }

@@ -75,7 +75,9 @@ class AppRouter extends GoRouter {
                   pageBuilder: (context, state) {
                     return MaterialPage(
                       key: state.pageKey,
-                      child: PageTodoList(repository: getIt()),
+                      child: PageTodoList(
+                          appStateManager: _appStateManager,
+                          repository: getIt()),
                     );
                   }),
             ]) {
