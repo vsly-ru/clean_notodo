@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:notodo/core/enums.dart';
 import 'package:notodo/core/errors/failure.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
@@ -13,10 +14,14 @@ import 'package:notodo/features/todos/domain/usecases/get_todo_list.dart';
 part 'todo_list_state.dart';
 part 'todo_list_cubit.freezed.dart';
 
+@injectable
 class TodoListCubit extends Cubit<TodoListState> {
-  final GetTodoListUC _getTodoListUC;
+  final ITodoRepository repository;
+  late final GetTodoListUC _getTodoListUC;
 
-  TodoListCubit(this._getTodoListUC) : super(TodoListState.initial());
+  TodoListCubit(this.repository) : super(TodoListState.initial()) {
+    _getTodoListUC = GetTodoListUC(repository);
+  }
 
   // debug
   // @override

@@ -1,3 +1,5 @@
+// dev implementation of auth repository to test in dev mode (without accessing production)
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:notodo/core/constants.dart';
@@ -10,21 +12,21 @@ class DevAuthRepository implements IAuthRepository {
   Future<AuthRepositoryResult> loginWithEmail(String email, String password) {
     //
     return Future.value(const Left(
-        Failure(message: 'Method not implemented.', code: 'not_implemented')));
+        Failure(message: 'Method not implemented.', code: 'loginWithEmail')));
   }
 
   @override
   Future<AuthRepositoryResult> registerWithEmail(
       String email, String password) {
     //
-    return Future.value(const Left(
-        Failure(message: 'Method not implemented.', code: 'not_implemented')));
+    return Future.value(const Left(Failure(
+        message: 'Method not implemented.', code: 'registerWithEmail')));
   }
 
   @override
   Future<AuthRepositoryResult> logout() {
     //
     return Future.value(const Left(
-        Failure(message: 'Method not implemented.', code: 'not_implemented')));
+        Failure(message: 'Method not implemented.', code: 'logout')));
   }
 }

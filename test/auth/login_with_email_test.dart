@@ -15,11 +15,9 @@ void main() {
   const tEmail = 'testUser@example.com';
   const tPassword = '123456';
   const tUser = User(
-      uid: 'TEST00',
-      email: 'testUser@example.com',
-      token: 'DEADBEAF',
-      locale: 'en_US',
-      platform: 'test');
+    uid: 'TEST00',
+    email: 'testUser@example.com',
+  );
 
   test(
     '[LoginWithEmail] Sign in with email and password.',
@@ -28,7 +26,7 @@ void main() {
       final mockRepository = MockIAuthRepository();
       when(mockRepository.loginWithEmail(any, any))
           .thenAnswer((_) async => const Right(tUser));
-      final usecase = LoginWithEmailUC(mockRepository);
+      final usecase = LoginWithEmailUC(repository: mockRepository);
       // act
       final result = await usecase.execute(
           const LoginWithEmailUCArgs(email: tEmail, password: tPassword));

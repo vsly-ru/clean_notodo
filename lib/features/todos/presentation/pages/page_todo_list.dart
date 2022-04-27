@@ -15,12 +15,13 @@ import 'package:notodo/features/todos/presentation/widgets/todo_list_scaffold.da
 import 'package:notodo/features/todos/presentation/widgets/todo_list_screen.dart';
 
 class PageTodoList extends HookWidget {
-  final TodoListCubit cubit;
+  final ITodoRepository repository;
 
-  const PageTodoList({required this.cubit, Key? key}) : super(key: key);
+  const PageTodoList({required this.repository, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final TodoListCubit cubit = useMemoized(() => TodoListCubit(repository));
     useEffect(() {
       // on build
       cubit.loadAll();
