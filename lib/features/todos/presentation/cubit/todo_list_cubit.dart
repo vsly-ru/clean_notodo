@@ -10,6 +10,8 @@ import 'package:notodo/core/errors/failure.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
 import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
 import 'package:notodo/features/todos/domain/usecases/get_todo_list.dart';
+import 'package:notodo/features/todos/presentation/actions/open_add_page%20copy.dart';
+import 'package:notodo/features/todos/presentation/actions/open_view_edit_page.dart';
 
 part 'todo_list_state.dart';
 part 'todo_list_cubit.freezed.dart';
@@ -17,8 +19,12 @@ part 'todo_list_cubit.freezed.dart';
 @injectable
 class TodoListCubit extends Cubit<TodoListState> {
   final GetTodoListUC _getTodoListUC;
+  final OpenAddPageAction _openAddPageAction;
+  final OpenViewEditPageAction _openViewEditPageAction;
 
-  TodoListCubit(this._getTodoListUC) : super(TodoListState.initial());
+  TodoListCubit(this._getTodoListUC, this._openAddPageAction,
+      this._openViewEditPageAction)
+      : super(TodoListState.initial());
 
   // debug
   // @override
@@ -27,9 +33,12 @@ class TodoListCubit extends Cubit<TodoListState> {
   //   log('state changed: $change', name: 'TodoListCubit');
   // }
 
-  /// with null – go to the adding page; witn an instance of ToDo – go to view/editing
-  Future<void> addOrViewEdit(ToDo? todo) async {
-    //
+  void openAddPage() {
+    _openAddPageAction(null);
+  }
+
+  void openViewEditPage(ToDo todo) {
+    _openViewEditPageAction(todo);
   }
 
   Future<void> loadAll() async {

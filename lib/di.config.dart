@@ -52,10 +52,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i12.LoginWithEmailUC(repository: get<_i4.IAuthRepository>()));
   gh.factory<_i13.LogoutUC>(
       () => _i13.LogoutUC(repository: get<_i4.IAuthRepository>()));
-  gh.factory<_i14.OpenAddPage>(
-      () => _i14.OpenAddPage(get<_i7.IDelegatedActions>()));
-  gh.factory<_i15.OpenViewEditPage>(
-      () => _i15.OpenViewEditPage(get<_i7.IDelegatedActions>()));
+  gh.factory<_i14.OpenAddPageAction>(
+      () => _i14.OpenAddPageAction(get<_i7.IDelegatedActions>()));
+  gh.factory<_i15.OpenViewEditPageAction>(
+      () => _i15.OpenViewEditPageAction(get<_i7.IDelegatedActions>()));
   gh.factory<_i16.RegisterWithEmailUC>(
       () => _i16.RegisterWithEmailUC(repository: get<_i4.IAuthRepository>()));
   gh.factory<_i17.TodoAddEditCubit>(
@@ -73,7 +73,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i12.LoginWithEmailUC>(),
       get<_i16.RegisterWithEmailUC>(),
       get<_i13.LogoutUC>()));
-  gh.factory<_i23.TodoListCubit>(
-      () => _i23.TodoListCubit(get<_i21.GetTodoListUC>()));
+  gh.factory<_i23.TodoListCubit>(() => _i23.TodoListCubit(
+      get<_i21.GetTodoListUC>(),
+      get<_i14.OpenAddPageAction>(),
+      get<_i15.OpenViewEditPageAction>()));
   return get;
 }

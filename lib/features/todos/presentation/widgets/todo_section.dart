@@ -46,7 +46,7 @@ class TodoSectionWidget extends HookWidget {
                   ),
                 if (showAddButton)
                   TextButton.icon(
-                      onPressed: () {},
+                      onPressed: cubit.openAddPage,
                       icon: LineIcon.plus(),
                       label: Text('Добавить'))
               ],
