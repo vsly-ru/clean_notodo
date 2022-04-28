@@ -108,6 +108,9 @@ class AppRouter extends GoRouter {
 
   void _subscribeDelegatedEvents() {
     _delegated = [
+      _delegatedActions.addTodo.listen((void _) {
+        go(PageRoutes.todo);
+      }),
       _delegatedActions.openTodo.listen((todo) {
         final encodedId = Uri.encodeComponent(todo.id);
         go('${PageRoutes.todo}?id=$encodedId', extra: todo);
