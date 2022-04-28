@@ -15,7 +15,7 @@ import 'package:notodo/core/extensions/firebase_fix.dart';
 
 @Injectable(as: IAuthRepository, env: [Env.prod])
 class AuthRepository implements IAuthRepository {
-  // TODO: inject this channel to be able to test this rep with a mocked method channel
+  // TODO: maybe inject this channel to be able to test this rep with a mocked method channel, if needed
   final _platformChannel = PlatformChannel.channel;
 
   @override

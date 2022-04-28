@@ -26,7 +26,7 @@ class SigninPage extends HookWidget {
     final _registerWithEmailUC =
         useMemoized(() => RegisterWithEmailUC(repository: repository));
     final _logoutUC = useMemoized(() => LogoutUC(repository: repository));
-    // cubit
+    // TODO: inject cubit with usecases from page building in router
     final LoginCubit cubit = useMemoized(() => LoginCubit(
         appStateManager, _loginWithEmailUC, _registerWithEmailUC, _logoutUC));
     // building >>

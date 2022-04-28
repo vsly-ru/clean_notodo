@@ -16,12 +16,9 @@ part 'todo_list_cubit.freezed.dart';
 
 @injectable
 class TodoListCubit extends Cubit<TodoListState> {
-  final ITodoRepository repository;
-  late final GetTodoListUC _getTodoListUC;
+  final GetTodoListUC _getTodoListUC;
 
-  TodoListCubit(this.repository) : super(TodoListState.initial()) {
-    _getTodoListUC = GetTodoListUC(repository);
-  }
+  TodoListCubit(this._getTodoListUC) : super(TodoListState.initial());
 
   // debug
   // @override
@@ -30,10 +27,10 @@ class TodoListCubit extends Cubit<TodoListState> {
   //   log('state changed: $change', name: 'TodoListCubit');
   // }
 
-  // 🅰️ Actions
-
-  /// null – go to adding page; instance of ToDo – go to editing
-  Future<void> addOrEditTodo(ToDo? todo) async {}
+  /// with null – go to the adding page; witn an instance of ToDo – go to view/editing
+  Future<void> addOrViewEdit(ToDo? todo) async {
+    //
+  }
 
   Future<void> loadAll() async {
     try {

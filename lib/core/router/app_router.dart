@@ -7,6 +7,7 @@ import 'package:notodo/core/actions/delegated_actions.dart';
 import 'package:notodo/di.dart';
 import 'package:notodo/features/auth/presentation/pages/signin_page.dart';
 import 'package:notodo/features/todos/domain/entities/todo.dart';
+import 'package:notodo/features/todos/presentation/cubit/todo_list_cubit.dart';
 import 'package:notodo/features/todos/presentation/pages/page_add_edit_todo.dart';
 import 'package:notodo/features/todos/presentation/pages/page_todo_list.dart';
 import '../state/app_state_manager.dart';
@@ -79,9 +80,7 @@ class AppRouter extends GoRouter {
                   pageBuilder: (context, state) {
                     return MaterialPage(
                       key: state.pageKey,
-                      child: PageTodoList(
-                          appStateManager: _appStateManager,
-                          repository: getIt()),
+                      child: PageTodoList(cubit: getIt<TodoListCubit>()),
                     );
                   }),
               GoRoute(

@@ -30,6 +30,7 @@ class PageAddEditViewTodo extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: inject cubit with usecases from page building in router
     final TodoAddEditCubit cubit =
         useMemoized(() => TodoAddEditCubit(repository));
     return BlocBuilder(
