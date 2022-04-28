@@ -1,7 +1,12 @@
 # Nothing ToDo
 
 Yet another (example) todo flutter project.<br>
-Made using Flutter, Firebase, Clean Architecture, TDD, mockito, BLoC, freezed, dartz, get_it, injectable, go_router, flutter_hooks
+- Clean Architecture
+- TDD, mockito
+- BLoC
+- freezed, dartz, get_it, injectable
+- Firebase Auth & Firestore
+- go_router, flutter_hooks
 <br><br>
 Clean Architecture Flutter interpretation from the [Reso Coder's proposal](https://github.com/ResoCoder/flutter-tdd-clean-architecture-course):
 <br><br>
