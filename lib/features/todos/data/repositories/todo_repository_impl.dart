@@ -53,7 +53,7 @@ class TodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<Either<Failure, ToDo>> addUpdateOne(ToDo todo) async {
+  Future<Either<Failure, ToDo>> saveOne(ToDo todo) async {
     try {
       if (todo.id.isEmpty) {
         // generating random uuid if id is empty

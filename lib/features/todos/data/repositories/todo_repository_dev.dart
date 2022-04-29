@@ -30,7 +30,7 @@ class DevTodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<Either<Failure, ToDo>> addUpdateOne(ToDo todo) async {
+  Future<Either<Failure, ToDo>> saveOne(ToDo todo) async {
     await Future.delayed(const Duration(milliseconds: 800));
     return Right(todo);
   }

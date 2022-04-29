@@ -21,12 +21,12 @@ import 'features/auth/presentation/cubit/login_cubit.dart' as _i22;
 import 'features/todos/data/repositories/todo_repository_dev.dart' as _i10;
 import 'features/todos/data/repositories/todo_repository_impl.dart' as _i11;
 import 'features/todos/domain/repositories/todo_repository.dart' as _i9;
-import 'features/todos/domain/usecases/add_update_todo.dart' as _i18;
 import 'features/todos/domain/usecases/get_one_todo.dart' as _i20;
 import 'features/todos/domain/usecases/get_todo_list.dart' as _i21;
+import 'features/todos/domain/usecases/save_todo.dart' as _i17;
 import 'features/todos/presentation/actions/open_add_page%20copy.dart' as _i14;
 import 'features/todos/presentation/actions/open_view_edit_page.dart' as _i15;
-import 'features/todos/presentation/cubit/todo_add_edit_cubit.dart' as _i17;
+import 'features/todos/presentation/cubit/todo_add_edit_cubit.dart' as _i18;
 import 'features/todos/presentation/cubit/todo_list_cubit.dart' as _i23;
 
 const String _prod = 'prod';
@@ -58,10 +58,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i15.OpenViewEditPageAction(get<_i7.IDelegatedActions>()));
   gh.factory<_i16.RegisterWithEmailUC>(
       () => _i16.RegisterWithEmailUC(repository: get<_i4.IAuthRepository>()));
-  gh.factory<_i17.TodoAddEditCubit>(
-      () => _i17.TodoAddEditCubit(get<_i9.ITodoRepository>()));
-  gh.factory<_i18.AddUpdateTodoUC>(
-      () => _i18.AddUpdateTodoUC(get<_i9.ITodoRepository>()));
+  gh.factory<_i17.SaveTodoUC>(
+      () => _i17.SaveTodoUC(get<_i9.ITodoRepository>()));
+  gh.factory<_i18.TodoAddEditCubit>(
+      () => _i18.TodoAddEditCubit(get<_i17.SaveTodoUC>()));
   gh.factory<_i19.AppRouter>(() =>
       _i19.AppRouter(get<_i3.AppStateManager>(), get<_i7.IDelegatedActions>()));
   gh.factory<_i20.GetOneTodoUC>(

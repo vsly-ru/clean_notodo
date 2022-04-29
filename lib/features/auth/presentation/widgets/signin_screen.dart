@@ -7,7 +7,7 @@ import 'package:notodo/core/widgets/tap_container.dart';
 import 'package:notodo/core/widgets/toggle_two.dart';
 import 'package:notodo/core/widgets/widget_fadein.dart';
 import 'package:notodo/features/auth/presentation/cubit/login_cubit.dart';
-import 'package:notodo/features/auth/presentation/widgets/edit.dart';
+import 'package:notodo/core/widgets/edit.dart';
 import 'package:notodo/main.dart';
 
 class SigninScreen extends HookWidget {
@@ -32,15 +32,6 @@ class SigninScreen extends HookWidget {
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 40),
-          // ToggleTwo(
-          //   width: 250.0,
-          //   height: 36.0,
-          //   value: state.isRegistration,
-          //   onTap: cubit.toggleRegistrationMode,
-          //   left: 'Вход',
-          //   right: 'Регистрация',
-          // ),
-          // const SizedBox(height: 24.0),
           FadeIn(
               scale: 0.9,
               offset: Offset(0, -32),

@@ -11,14 +11,14 @@ class AddUpdateTodoUCArgs {
 }
 
 @injectable
-class AddUpdateTodoUC
+class SaveTodoUC
     implements IUsecase<AddUpdateTodoUCArgs, Future<Either<Failure, ToDo>>> {
   final ITodoRepository _repository;
 
-  AddUpdateTodoUC(this._repository);
+  SaveTodoUC(this._repository);
 
   @override
   Future<Either<Failure, ToDo>> execute(AddUpdateTodoUCArgs args) async {
-    return await _repository.addUpdateOne(args.todo);
+    return await _repository.saveOne(args.todo);
   }
 }

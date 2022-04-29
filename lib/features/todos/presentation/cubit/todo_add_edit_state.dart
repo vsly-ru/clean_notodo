@@ -10,4 +10,6 @@ class TodoAddEditState with _$TodoAddEditState {
   }) = _TodoAddEditState;
 
   factory TodoAddEditState.initial() => const TodoAddEditState();
+  factory TodoAddEditState.adding() => const TodoAddEditState(isEditing: true);
+  factory TodoAddEditState.viewing(ToDo todo) => TodoAddEditState(todo: todo);
 }

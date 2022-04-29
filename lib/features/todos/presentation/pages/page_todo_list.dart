@@ -13,7 +13,7 @@ import 'package:notodo/features/todos/domain/repositories/todo_repository.dart';
 import 'package:notodo/features/todos/domain/usecases/get_todo_list.dart';
 import 'package:notodo/features/todos/presentation/cubit/todo_list_cubit.dart';
 import 'package:notodo/features/todos/presentation/widgets/todo_list_scaffold.dart';
-import 'package:notodo/features/todos/presentation/widgets/todo_list_screen.dart';
+import 'package:notodo/features/todos/presentation/screens/todo_list_screen.dart';
 
 class PageTodoList extends HookWidget {
   final TodoListCubit cubit;
